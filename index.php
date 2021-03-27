@@ -24,7 +24,7 @@
 </head>
 <body>
 
-<div id="conteiner">
+<div id="container">
 	Panel Logowania <br><br>
 	<form action="system/login.php" method="post">
 

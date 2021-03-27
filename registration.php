@@ -20,7 +20,7 @@ session_start();
 </head>
 <body>
 
-<div class="conteiners">
+<div class="containers">
 
   <form action="system/registration_sys.php" method="post">
 

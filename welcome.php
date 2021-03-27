@@ -1,5 +1,6 @@
 <?php
 session_start();
+include("system/auth_session.php");
 ?>
 <!DOCTYPE HTML>
 <html lang="pl">
@@ -14,7 +15,7 @@ session_start();
 </head>
 <body>
 
-<div id="conteiner">
+<div id="container">
 	Witamy! <br><br>
 	<?php
 	  if (isset($_SESSION['username'])) {
