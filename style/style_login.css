@@ -1,7 +1,7 @@
 body
 {
 font-family: 'Lato', sans-serif;
-background-image: url("..img/doodles.png") !important;  /*This pattern is downloaded from www.subtlepatterns.com*/
+background-image: url("../img/doodles.png") !important;  /*This pattern is downloaded from www.subtlepatterns.com*/
 }
 
 #container

@@ -1,9 +1,10 @@
 <?php
-
+// Rozpoczęcie sesji
 	session_start();
-
+// Sprawdzenie czy zmienna sesyjna "username" jest ustawiona
 	if (isset($_SESSION["username"]))
 	{
+		// Jeżeli jest, przekierowanie do pliku:
 		header('Location: dashboard.php');
 		exit();
 	}
@@ -37,6 +38,7 @@
 		</form>
 		<p class="link"><a href="registration.php">Zarejestruj się.</a></p>
 <?php
+// Komunikat błędu
 	if(isset($_SESSION['error']))	echo $_SESSION['error'];
 	unset($_SESSION['error']);
 ?>

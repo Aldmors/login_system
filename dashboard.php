@@ -1,5 +1,5 @@
 <?php
-//include auth_session.php file on all user panel pages
+// sprawdzenie czy urzytkownik jest zalogowany
 include("system/auth_session.php");
 ?>
 
