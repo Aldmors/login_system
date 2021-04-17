@@ -9,7 +9,7 @@ include("system/auth_session.php");
 
 
 	<meta charset="utf-8" />
-	<title>Panel Głowny</title>
+	<title>Main Panel</title>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 	<link rel="shortcut icon" type="image/jpg" href="img/stream-white-48dp.svg"/>
 
@@ -23,7 +23,7 @@ include("system/auth_session.php");
   		<div class="header">
 				<div class="logo">
 						<img src="img/stream-white-48dp.svg" style="float: left;" />
-					<span style="color: #0CCC0C">Panel</span> Zarządzania
+					<span style="color: #0CCC0C">Management</span> Panel
 						<div style="clear:both;"> </div>
 				</div>
 
@@ -32,10 +32,10 @@ include("system/auth_session.php");
 				<ol>
 					<li><?php echo $_SESSION['username']; ?>
 					</li>
-					<li><a href="#">Panel Głowny</a></li>
-					<li><a href="#">Ogłoszenia</a></li>
+					<li><a href="#">Main Panel</a></li>
+					<li><a href="#">Advert</a></li>
 					<li><a href="#">Logi</a></li>
-					<li><a href="system/logout.php">Wyloguj się</a></li>
+					<li><a href="system/logout.php">Log out</a></li>
 				</ol>
 			</div>
 			<div class="topbar"></div>

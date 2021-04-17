@@ -1,7 +1,7 @@
 <?php
     session_start();
 
-    // Nawiązywanie polączenie
+    // Establishing a connection
       require('connect.php');
 
     if (!isset($_POST['nick'])){
@@ -9,128 +9,108 @@
        exit();
    }
 
-// Sprawdzenie czy dostaliśmy dane
 if (isset($_POST['email'])) {
-  // flaga
+  // flag
   $everything_ok=true;
 
-//Sprawdzanie nazwy
+//Name checking
       $nick = $_POST['nick'];
 
-//sprawdzenie długosci nazwy od 3 do 9 znaków
+
     if ((strlen($nick)<3) || (strlen($nick)>9)){
     			$everything_ok=false;
-    			$_SESSION['e_nick']="Nick musi posiadać od 3 do 9 znaków!";
+    			$_SESSION['e_nick']="The nickname must be between 3 and 9 characters long!";
     		}
-// Sprawdzanie znaków specjalnych
+// Checking for special characters
     if(ctype_alnum($nick)==false){
           $everything_ok=false;
-          $_SESSION['e_nick']='Nick może składac się tylko z liter i cyfr (bez polskich znaków)';
+          $_SESSION['e_nick']='The nickname can only consist of letters and numbers (no Polish characters)';
         }
 
-    // traktowanie zmiennej jako ciąg znaków
       $nick = stripslashes($nick);
-    // zmiana znaków specjalnych na format HTML
+
       $nick = htmlentities($nick, ENT_QUOTES, 'UTF-8');
       $nick = mysqli_real_escape_string($con, $nick);
 
-//sprawdzanie emaila
+//Checking email
     $email = $_POST['email'];
     $emailB = filter_var($email, FILTER_SANITIZE_EMAIL);
 
     if ((filter_var($emailB, FILTER_VALIDATE_EMAIL)==false || ($emailB!=$email))){
           $everything_ok=false;
-          $_SESSION['e_email']="Podaj poprawny adres e-mail!";
+          $_SESSION['e_email']="Please enter a correct e-mail address!";
       }
 
 
-    //Poprawność hasla
+    // Password correctness
     $pass1 = $_POST['pass1'];
     $pass2 = $_POST['pass2'];
 
-// Sprawdznie długości
     if ((strlen($pass1)<8) || (strlen($pass1)>35)){
       $everything_ok=false;
-      $_SESSION['e_pass']="Hasło powino zawierać od 8 do 35 znaków!";
-    }
-// Sprawdzanie czy są takie same
-    if ($pass1!=$pass2){
-        $everything_ok=false;
-        $_SESSION['e_pass']="Podane hasła nie są identyczne.";
+      $_SESSION['e_pass']="The password should be between 8 and 35 characters long!";
     }
 
-  // Traktowanie ciągu jako string
+    if ($pass1!=$pass2){
+        $everything_ok=false;
+        $_SESSION['e_pass']="The passwords provided do not match.";
+    }
+
+
     $pass1 = stripslashes($pass1);
     $pass1 = htmlentities($pass1, ENT_QUOTES, 'UTF-8');
 	  $pass1 = mysqli_real_escape_string($con, $pass1);
 
-// Hashowanie hasła, domyślnym algorytmem, czyli bcrypt
+
     $pass_hash = password_hash($pass1, PASSWORD_DEFAULT);
 
 
 
-  // Wlączenie raportowania błędów MySQL w PHP
-  //  mysqlI_report(MYSQLI_REPORT_STRICT);
 
-    // sprawdzenie emaila czy nie ma takiego w DB
+    // Checking the email in DB
     $query = "SELECT id FROM users WHERE email='$email'";
     $result = mysqli_query($con, $query) or die(mysql_error());
     $how_many_emails = mysqli_num_rows($result);
 
     if($how_many_emails>0){
           $everything_ok=false;
-          $_SESSION['e_email']="Istnieje już konto przypisane do tego adresu e-mail!";
+          $_SESSION['e_email']="There is already an account assigned to this e-mail address!";
       }
 
-        // sprawdzenie nicku czy nie ma takiego w DB
+        // Checking the nick in DB
       $query = "SELECT id FROM users WHERE email='$email'";
       $result = mysqli_query($con, $query) or die(mysql_error());
       $how_many__nicks = mysqli_num_rows($result);
 
     if($how_many__nicks>0){
         $everything_ok=false;
-        $_SESSION['e_nick']="Istnieje już urzytkownik o takim nicku. Wybierz inny.";
+        $_SESSION['e_nick']="There is already a user with this nickname. Please choose another.";
       }
     $create_datetime = date("Y-m-d H:i:s");
 
-// dodawanie do bazy
-// Jeżeli flaga jest ciągle True
+//Adding to db
+
     if ($everything_ok==true){
-    // Tworzymy zapytanie
           $query = "INSERT into `users` (id, username, email, password, create_datetime)
                   VALUES (NULL, '$nick', '$email', '$pass_hash', '$create_datetime')";
-    // Wysyłanie zapytania
+
           $result = mysqli_query($con, $query);
 
-    // Jeżeli zapytanie powiodło się
         if ($result) {
             $_SESSION['username'] = $nick;
             header('Location: ../welcome.php');
-
-    // Jeżeli zapytanie nie udało się
         } else {
-          $_SESSION['e_regi']="Nie udało się zarejestrować, błąd serwera.";
+          $_SESSION['e_regi']="Failed to register, server error.";
           header('Location: ../registration.php');
 
-    // Wypisywanie pełnego błędu MySQl
-
-  //    try {
-  //    throw new Exception("MySQL error $con->error <br> Query:<br> $query", $con->errno);
-//  } catch(Exception $e ) {
-//      echo "Error No: ".$e->getCode(). " - ". $e->getMessage() . "<br >";
-//      echo nl2br($e->getTraceAsString());
-  // }
-
           }
-// Jeżeli flaga jest False
     } else {
-      $_SESSION['e_regi']="Nie udało się zarejestrować, spróbuj ponownie.";
+      $_SESSION['e_regi']="Failed to register, please try again.";
       header('Location: ../registration.php');
 
     }
 }
 
-// Zamknięcie połączenia
 mysqli_close($con);
 
 ?>

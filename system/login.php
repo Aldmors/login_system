@@ -6,13 +6,12 @@ if ((!isset($_POST['username'])) || (!isset($_POST['password']))){
 			header("Location: ../index.php");
 			exit();
 }
-// Załączenie wymaganego pliku, z połączeniem
 require('connect.php');
 
 
 if (isset($_POST['username'])) {
-  $username = stripslashes($_REQUEST['username']);    // removes backslashes
-	$username = htmlentities($username, ENT_QUOTES, 'UTF-8'); // zmienianie znaków specjalnych na znaki HTML
+  $username = stripslashes($_REQUEST['username']);
+	$username = htmlentities($username, ENT_QUOTES, 'UTF-8');
   $username = mysqli_real_escape_string($con, $username);
 
 	$password = stripslashes($_REQUEST['password']);
@@ -33,11 +32,11 @@ if ($rows > 0) {
 			    header("Location: ../dashboard.php");
 					free_result($result);
 			} else {
-						$_SESSION['error'] = '<span style="font-size:15px;color:red">Nieprawidłowy login lub hasło! 1</span>';
+						$_SESSION['error'] = '<span style="font-size:15px;color:red">Incorrect login or password!</span>';
 						header('Location: ../index.php');
 						}
 } else {
-      $_SESSION['error'] = '<span style="font-size:15px;color:red">Nieprawidłowy login lub hasło! 2</span>';
+      $_SESSION['error'] = '<span style="font-size:15px;color:red"> Incorrect login or password!</span>';
       header('Location: ../index.php');
 }
 		mysqli_close($con);
