@@ -3,7 +3,7 @@ body
   margin:0;
   font-size: 20px;
 font-family: 'Lato', sans-serif;
-background-image: url("doodles.png") !important;  /*This pattern is downloaded from www.subtlepatterns.com*/
+background-image: url("../img/doodles.png") !important;  /*This pattern is downloaded from www.subtlepatterns.com*/
 
 }
 

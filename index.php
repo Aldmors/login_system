@@ -1,7 +1,6 @@
 <?php
-
+// Start the session
 	session_start();
-
 	if (isset($_SESSION["username"]))
 	{
 		header('Location: dashboard.php');
@@ -16,7 +15,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 	<link rel="shortcut icon" type="image/jpg" href="img/stream-white-48dp.svg"/>
 
-	<title>Panel Logowania</title>
+	<title>Login Panel</title>
 
 	<meta name="description" content="System logowania" />
 	<link rel="stylesheet" href="style/style_login.css" type="text/css" />
@@ -24,18 +23,18 @@
 </head>
 <body>
 
-<div id="conteiner">
-	Panel Logowania <br><br>
+<div id="container">
+	Login Panel <br><br>
 	<form action="system/login.php" method="post">
 
 			<input type="text" name="username" placeholder="login" onfocus="this.placeholder=''" onblur="this.placeholder='login'" >
 
 			<input type="password" name="password" placeholder="hasło" onfocus="this.placeholder=''" onblur="this.placeholder='hasło'" >
 
-			<input type="submit" value="Zaloguj się">
+			<input type="submit" value="Sign In">
 
 		</form>
-		<p class="link"><a href="registration.php">Zarejestruj się.</a></p>
+		<p class="link"><a href="registration.php">Register</a></p>
 <?php
 	if(isset($_SESSION['error']))	echo $_SESSION['error'];
 	unset($_SESSION['error']);

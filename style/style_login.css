@@ -1,10 +1,10 @@
 body
 {
 font-family: 'Lato', sans-serif;
-background-image: url("doodles.png") !important;  /*This pattern is downloaded from www.subtlepatterns.com*/
+background-image: url("../img/doodles.png") !important;  /*This pattern is downloaded from www.subtlepatterns.com*/
 }
 
-#conteiner
+#container
 {
   font-weight: 500;
   font-size: 25px;
@@ -23,7 +23,7 @@ background-image: url("doodles.png") !important;  /*This pattern is downloaded f
 	 box-shadow: 3px 3px 30px 5px rgba(204,204,204,0.9);
 }
 
-#conteiners
+#containers
 {
   font-weight: 500;
   font-size: 20px;
@@ -42,7 +42,7 @@ background-image: url("doodles.png") !important;  /*This pattern is downloaded f
 	 box-shadow: 3px 3px 30px 5px rgba(204,204,204,0.9);
 }
 
-.conteiners
+.containers
 {
   font-weight: 400;
   font-size: 20px;

@@ -8,7 +8,7 @@ session_start();
 	<meta charset="utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-	<title>Arkusz rejestracyjny</title>
+	<title>Registration sheet</title>
 	<link rel="shortcut icon" type="image/jpg" href="img/stream-white-48dp.svg"/>
 	<meta name="description" content="Arkusz rejestracyjny" />
 
@@ -20,11 +20,11 @@ session_start();
 </head>
 <body>
 
-<div class="conteiners">
+<div class="containers">
 
   <form action="system/registration_sys.php" method="post">
 
-    Nazwa Uzytkownika: <br /> <input type="text" name="nick" /><br/>
+    User name: <br /> <input type="text" name="nick" /><br/>
 <?php
   if (isset($_SESSION['e_nick'])) {
     echo '<div class="error">'.$_SESSION['e_nick'].'</div>';
@@ -42,7 +42,7 @@ session_start();
   }
 ?>
 
-    Twoje hasło: <br /> <input type="password" name="pass1" /><br />
+    Password: <br /> <input type="password" name="pass1" /><br />
 
 <?php
 
@@ -52,7 +52,7 @@ session_start();
     }
 ?>
 
-    Powtórz hasło: <br /> <input type="password" name="pass2" /><br />
+    Repeat password: <br /> <input type="password" name="pass2" /><br />
 <br />
 
     <br />
@@ -65,7 +65,7 @@ session_start();
 		?>
 		<br />
 
-    <input type="submit" volue="Zarejestruj się" />
+    <input type="submit" volue="Register" />
 
   </form>
 
