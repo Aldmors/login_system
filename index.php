@@ -24,7 +24,7 @@
 <body>
 
 <div id="container">
-	Login Panel <br><br>
+	Biernat Chuj<br><br>
 	<form action="system/login.php" method="post">
 
 			<input type="text" name="username" placeholder="login" onfocus="this.placeholder=''" onblur="this.placeholder='login'" >
